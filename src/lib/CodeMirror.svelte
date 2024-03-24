@@ -38,7 +38,7 @@
     const dispatch = createEventDispatcher<{ change: string, ready: EditorView }>();
 
     let element: HTMLDivElement;
-    let view: EditorView;
+    export let view: EditorView | null = null;
 
     let update_from_prop = false;
     let update_from_state = false;
@@ -67,7 +67,7 @@
             parent: element,
             state: create_editor_state(value),
             dispatch(transaction) {
-                view.update([transaction]);
+                view!.update([transaction]);
 
                 if (!update_from_prop && transaction.docChanged) {
                     on_change();
@@ -82,7 +82,7 @@
             return;
         }
 
-        view.dispatch({
+        view!.dispatch({
             effects: StateEffect.reconfigure.of(state_extensions),
         });
     }
@@ -100,13 +100,13 @@
 
         update_from_prop = true;
 
-        view.setState(create_editor_state(value));
+        view!.setState(create_editor_state(value));
 
         update_from_prop = false;
     }
 
     function handle_change(): void {
-        const new_value = view.state.doc.toString();
+        const new_value = view!.state.doc.toString();
         if (new_value === value) return;
 
         update_from_state = true;

@@ -15,7 +15,8 @@
     "url": "https://github.com/touchifyapp/svelte-codemirror-editor"
   },
   "files": [
-    "src/lib/CodeMirror.svelte"
+    "src/lib/CodeMirror.svelte",
+    "vite.config.js"
   ],
   "scripts": {
     "dev": "vite dev",

@@ -16,6 +16,7 @@
   },
   "files": [
     "src/lib/CodeMirror.svelte",
+    "src/lib/util.ts",
     "vite.config.js"
   ],
   "scripts": {
